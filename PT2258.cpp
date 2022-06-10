@@ -29,7 +29,8 @@ unsigned char PT2258::HEX2BCD (unsigned char x)
 int PT2258::writeI2CChar(unsigned char c)   
 {   
 //  shift address to right - Wire library always uses 7 bit addressing
-    Wire.beginTransmission(0x88 >> 1); // transmit to device 0x88, PT2258
+	Wire.beginTransmission(0x80 >> 1); // Adress Code 0x80, Pin 4 & 17 set to GND "Condition 4"
+	//    Wire.beginTransmission(0x88 >> 1); // 0x88, PT2258 P4/17 [GND/VCC] "Cond2/Application Circuit"
     Wire.write(c);   
     int rtnCode = Wire.endTransmission(); // stop transmitting
     return rtnCode;
